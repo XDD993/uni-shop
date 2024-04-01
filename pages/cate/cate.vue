@@ -1,5 +1,10 @@
 <template>
 	<view>
+		<view class="search-box">
+			<!-- 使用自定义的搜索组件# -->
+			<my-search @click="gotoSearch"></my-search>
+		</view>
+		
 		<view class="scroll-view-container">
 			<scroll-view class="left-scroll-view" scroll-y="true" :style="{height:wh+'px'}" >
 			<block v-for="(item,i) in cateList" :key="i">
@@ -39,7 +44,7 @@ E
 		},
 		onLoad() {
 			const sysInfo = uni.getSystemInfoSync()
-			this.wh = sysInfo.windowHeight
+			this.wh = sysInfo.windowHeight - 50
 			
 			// 获取分类列表数据
 			this.getCateList()
@@ -64,6 +69,11 @@ E
 				this.active = i
 				this.cateLevel2 = this.cateList[i].children
 				this.scrollTop = this.scrollTop === 0 ? 1 :0
+			},
+			gotoSearch(){
+				uni.navigateTo({
+					url:'/subpkg/search/search'
+				})
 			}
 		}
 	}
@@ -128,4 +138,5 @@ E
 		}
 	}
 }
+
 </style>
