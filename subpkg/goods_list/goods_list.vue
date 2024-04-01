@@ -10,6 +10,15 @@
 			return {
 				
 			};
+		},
+		onLoad(options) {
+			const title = options.query
+			console.log(options.query)
+			if(title){
+				wx.setNavigationBarTitle({
+					 title
+				})
+			}
 		}
 	}
 </script>
